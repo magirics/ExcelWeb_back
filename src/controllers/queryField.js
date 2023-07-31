@@ -33,9 +33,104 @@ const getQueryFields = (req = request, res = response) => {
     res.status(500).json(objResponse)
   }
 }
-const getQueryField = () => {}
-const createQueryField = () => {}
-const updateQueryField = () => {}
-const deleteQueryField = () => {}
+const getQueryField = (req = request, res = response) => {
+  try {
+    const { id } = req.params;
+    const queryField = new QueryField();
+    const data = queryField.queryFieldGetOne(id);
+    const objResponse = {
+      success: true,
+      message: 'Data found',
+      data: {
+        request: data,
+      },
+    }
+    res.status(200).json(objResponse);
+  } catch (error) {
+    const objResponse = {
+      success: false,
+      message: "",
+      error_code: 1306,
+      data: {},
+      error,
+    }
+    res.status(500).json(objResponse);
+  }
+}
+const createQueryField = (req = request, res = response) => {
+  try {
+    const { id_query, field_name, is_active } = req.body;
+    const objReg = { id_query, field_name, is_active };
+    const queryField = new QueryField();
+    const data = queryField.queryFieldCreate(objReg);
+    const objResponse = {
+      success: true,
+      message: 'Data found',
+      data: {
+        request: data,
+      },
+    }
+    res.status(200).json(objResponse);
+  } catch (error) {
+    const objResponse = {
+      success: false,
+      message: "",
+      error_code: 1306,
+      data: {},
+      error,
+    }
+    res.status(500).json(objResponse);
+  }
+}
+const updateQueryField = (req = request, res = response) => {
+  try {
+    const { id } = req.params;
+    const { id_query, field_name, is_active } = req.body;
+    const objReg = { id_query, field_name, is_active, id };
+    const queryField = new QueryField();
+    const data = queryField.queryFieldUpdate(objReg);
+    const objResponse = {
+      success: true,
+      message: 'Data found',
+      data: {
+        request: data,
+      },
+    }
+    res.status(200).json(objResponse);
+  } catch (error) {
+    const objResponse = {
+      success: false,
+      message: "",
+      error_code: 1306,
+      data: {},
+      error,
+    }
+    res.status(500).json(objResponse);
+  }
+}
+const deleteQueryField = (req = request, res = response) => {
+  try {
+    const { id } = req.params;
+    const queryField = new QueryField();
+    const data = queryField.queryFieldDelete(id);
+    const objResponse = {
+      success: true,
+      message: 'Data delete',
+      data: {
+        request: data,
+      },
+    }
+    res.status(200).json(objResponse);
+  } catch (error) {
+    const objResponse = {
+      success: false,
+      message: "",
+      error_code: 1306,
+      data: {},
+      error,
+    }
+    res.status(500).json(objResponse);
+  }
+}
 
 module.exports = { getQueryFields, getQueryField, createQueryField, updateQueryField, deleteQueryField }

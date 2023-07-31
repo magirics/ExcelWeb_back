@@ -33,9 +33,104 @@ const getPlains = (req = request, res = response) => {
     res.status(500).json(objResponse)
   }
 }
-const getPlain = () => {}
-const createPlain = () => {}
-const updatePlain = () => {}
-const deletePlain = () => {}
+const getPlain = (req = request, res = response) => {
+  try {
+    const { id } = req.params;
+    const plain = new Plain();
+    const data = plain.plainGetOne(id);
+    const objResponse = {
+      success: true,
+      message: 'Data found',
+      data: {
+        request: data,
+      },
+    }
+    res.status(200).json(objResponse);
+  } catch (error) {
+    const objResponse = {
+      success: false,
+      message: "",
+      error_code: 1306,
+      data: {},
+      error,
+    }
+    res.status(500).json(objResponse);
+  }
+}
+const createPlain = (req = request, res = response) => {
+  try {
+      const { full_text } = req.body;
+      const objReg = { full_text };
+      const plain = new Plain();
+      const data = plain.plainCreate(objReg);
+      const objResponse = {
+          success: true,
+          message: 'Data found',
+          data: {
+              request: data,
+          },
+      }
+      res.status(200).json(objResponse);
+  } catch (error) {
+      const objResponse = {
+          success: false,
+          message: "",
+          error_code: 1306,
+          data: {},
+          error,
+      }
+      res.status(500).json(objResponse);
+  }
+}
+const updatePlain = (req = request, res = response) => {
+  try {
+      const { id } = req.params;
+      const { full_text } = req.body;
+      const objReg = { full_text, id };
+      const plain = new Plain();
+      const data = plain.plainUpdate(objReg);
+      const objResponse = {
+          success: true,
+          message: 'Data found',
+          data: {
+              request: data,
+          },
+      }
+      res.status(200).json(objResponse);
+  } catch (error) {
+      const objResponse = {
+          success: false,
+          message: "",
+          error_code: 1306,
+          data: {},
+          error,
+      }
+      res.status(500).json(objResponse);
+  }
+}
+const deletePlain = (req = request, res = response) => {
+  try {
+    const { id } = req.params;
+    const plain = new Plain();
+    const data = plain.plainDelete(id);
+    const objResponse = {
+      success: true,
+      message: 'Data delete',
+      data: {
+        request: data,
+      },
+    }
+    res.status(200).json(objResponse);
+  } catch (error) {
+    const objResponse = {
+      success: false,
+      message: "",
+      error_code: 1306,
+      data: {},
+      error,
+    }
+    res.status(500).json(objResponse);
+  }
+}
 
 module.exports = { getPlains, getPlain, createPlain, updatePlain, deletePlain }

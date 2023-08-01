@@ -59,8 +59,8 @@ const getQuery = (req = request, res = response) => {
 }
 const createQuery = (req = request, res = response) => {
   try {
-    const { id_data_table, name } = req.body;
-    const objReg = { id_data_table, name };
+    const { id_data_table, name, sentence } = req.body;
+    const objReg = { id_data_table, name, sentence };
     const query = new Query();
     const data = query.queryCreate(objReg);
     const objResponse = {

@@ -22,7 +22,7 @@ class DataFieldDao extends Conexion {
     dataFieldGetOne(id) {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT * FROM DATA_FIELD WHERE id_data_field =  ? LIMIT 1");
+            let stmt = this.dbConnection.prepare("SELECT * FROM DATA_FIELD WHERE id_data_table =  ?");
             let res = stmt.exec([id]);
             console.log(res);
             return res;

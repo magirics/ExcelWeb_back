@@ -6,6 +6,17 @@ const authRoute = require("./auth");
 
 router.use("/", authRoute);
 
+router.use('/upload', (req, res) => {
+    const fileName = req.query.fileName
+     
+    req.on('data', (chunk) => {
+        console.log(`Appending ${fileName}...`)
+        fs.appendFileSync(fileName, chunk)
+    })
+ 
+    return res.end('successfully file uploaded!')
+})
+
 fs.readdirSync(`${__dirname}/`).filter((f) => {
     const routeFile = f.split(".").slice(0, -1).join(".").toString();
 

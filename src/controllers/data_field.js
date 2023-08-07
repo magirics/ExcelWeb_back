@@ -96,7 +96,7 @@ const createDataField = (req = request, res = response) => {
             success: true,
             message: 'Data found',
             data: {
-                request: data,
+                request: { ...data, id: id_data_field },
             },
         }
         res.status(200).json(objResponse);

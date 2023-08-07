@@ -70,7 +70,7 @@ const createProject = (req = request, res = response) => {
       success: true,
       message: 'Data found',
       data: {
-        request: { ...data, id: id },
+        request: { ...data, id: id_project },
       },
     }
     res.status(200).json(objResponse);

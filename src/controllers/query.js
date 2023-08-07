@@ -69,7 +69,7 @@ const createQuery = (req = request, res = response) => {
       success: true,
       message: 'Data found',
       data: {
-        request: data,
+        request: {...data, id: id_query},
       },
     }
     res.status(200).json(objResponse);

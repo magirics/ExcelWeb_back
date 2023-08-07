@@ -1,4 +1,5 @@
 const { request, response } = require('express')
+const { v4: uuidv4 } = require('uuid')
 const Sheet = require('../models/data/sheet')
 
 const getSheets = (req = request, res = response) => {
@@ -59,8 +60,9 @@ const getSheet = (req = request, res = response) => {
 }
 const createSheet = (req = request, res = response) => {
   try {
+    const id_sheet = uuidv4();
     const { id_project, title, nivel, is_query, id_query, is_plain, id_plain } = req.body;
-    const objReg = { id_project, title };
+    const objReg = { id_sheet, id_project, title };
     if (nivel) { objReg.nivel = nivel; }
     if (is_query) { objReg.is_query = is_query; }
     if (id_query) { objReg.id_query = id_query; }

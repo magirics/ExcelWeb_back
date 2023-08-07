@@ -49,9 +49,9 @@ class DataFieldDao extends Conexion {
 
     dataFieldCreate(dataField) {
         try {
-            let columnName = 'id_data_table, field_name';
-            let columnValues = '?, ?'
-            let arrValues = [dataField.id_data_table, dataField.field_name]
+            let columnName = 'id_data_field, id_data_table, field_name';
+            let columnValues = '?, ?, ?'
+            let arrValues = [dataField.id_data_field,  dataField.id_data_table, dataField.field_name]
             let sqlQuery = `INSERT INTO DATA_FIELD (${columnName}) VALUES (${columnValues})`;
 
             this.connect();

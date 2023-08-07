@@ -47,9 +47,9 @@ class QueryDao extends Conexion {
 
     queryCreate(query) {
         try {
-            let columnName = 'ID_DATA_TABLE, SENTENCE';
-            let columnValues = '?, ?'
-            let arrValues = [query.id_data_table, query.sentence]
+            let columnName = 'ID_QUERY, ID_DATA_TABLE, SENTENCE';
+            let columnValues = '?, ?, ?'
+            let arrValues = [query.id_query, query.id_data_table, query.sentence]
 
             if (query.name) {
                 columnName += ', NAME';
@@ -62,6 +62,7 @@ class QueryDao extends Conexion {
             this.connect();
             let stmt = this.dbConnection.prepare(sqlQuery);
             let res = stmt.exec(arrValues);
+            console.log(res);
             return res;
         } catch (error) {
             return error;

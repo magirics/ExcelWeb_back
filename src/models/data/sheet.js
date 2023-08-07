@@ -48,9 +48,9 @@ class SheetDao extends Conexion {
 
     sheetCreate(sheet) {
         try {
-            let columnName = 'ID_PROJECT, TITLE';
-            let columnValues = '?, ?'
-            let arrValues = [sheet.id_project, sheet.title]
+            let columnName = 'ID_SHEET, ID_PROJECT, TITLE';
+            let columnValues = '?, ?, ?'
+            let arrValues = [sheet.id_sheet, sheet.id_project, sheet.title]
 
             if (sheet.nivel) {
                 columnName += ', NIVEL';

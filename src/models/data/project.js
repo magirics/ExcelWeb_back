@@ -47,14 +47,15 @@ class ProjectDao extends Conexion {
 
     projectCreate(project) {
         try {
-            let columnName = 'NAME, DESCRIPTION';
-            let columnValues = '?, ?'
-            let arrValues = [project.name, project.description]
+            let columnName = 'ID_PROJECT, NAME, DESCRIPTION';
+            let columnValues = '?, ?, ?'
+            let arrValues = [project.id_project, project.name, project.description]
             let sqlQuery = `INSERT INTO PROJECT (${columnName}) VALUES (${columnValues})`;
 
             this.connect();
             let stmt = this.dbConnection.prepare(sqlQuery);
             let res = stmt.exec(arrValues);
+            console.log(res);
             return res;
         } catch (error) {
             return error;

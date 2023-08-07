@@ -47,9 +47,9 @@ class QueryFieldDao extends Conexion {
 
     queryFieldCreate(queryField) {
         try {
-            let columnName = 'ID_QUERY, FIELD_NAME, IS_ACTIVE';
-            let columnValues = '?, ?, ?'
-            let arrValues = [queryField.id_query, queryField.field_name, queryField.is_active]
+            let columnName = 'ID_QUERY_FIELD, ID_QUERY, FIELD_NAME, IS_ACTIVE';
+            let columnValues = '?, ?, ?, ?'
+            let arrValues = [queryField.id_query_field, queryField.id_query, queryField.field_name, queryField.is_active]
 
             let sqlQueryField = `INSERT INTO QUERY_FIELD (${columnName}) VALUES (${columnValues})`;
 

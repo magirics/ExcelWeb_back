@@ -8,7 +8,7 @@ class ProjectDao extends Conexion {
     projectAll() {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT id_projecto, name, description FROM PROJECT LIMIT 10 OFFSET 10");
+            let stmt = this.dbConnection.prepare("SELECT id_project, name, description FROM PROJECT");
             let res = stmt.exec();
             return res;
         } catch (error) {

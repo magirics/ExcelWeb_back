@@ -8,7 +8,7 @@ class QueryFieldDao extends Conexion {
     queryFieldAll() {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT id_query_field, id_query, field_name, is_active FROM QUERY_FIELD LIMIT 10 OFFSET 10");
+            let stmt = this.dbConnection.prepare("SELECT id_query_field, id_query, field_name, is_active FROM QUERY_FIELD");
             let res = stmt.exec();
             return res;
         } catch (error) {

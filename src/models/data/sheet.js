@@ -9,7 +9,7 @@ class SheetDao extends Conexion {
     sheetAll() {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT id_sheet, id_project, title, nivel, is_query, id_query, is_plain, id_plain FROM SHEET LIMIT 10 OFFSET 10");
+            let stmt = this.dbConnection.prepare("SELECT id_sheet, id_project, title, nivel, is_query, id_query, is_plain, id_plain FROM SHEET");
             let res = stmt.exec();
             return res;
         } catch (error) {

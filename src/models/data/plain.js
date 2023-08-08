@@ -8,7 +8,7 @@ class PlainDao extends Conexion {
     plainAll() {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT id_plain, full_text FROM PLAIN LIMIT 10 OFFSET 10");
+            let stmt = this.dbConnection.prepare("SELECT id_plain, full_text FROM PLAIN");
             let res = stmt.exec();
             return res;
         } catch (error) {

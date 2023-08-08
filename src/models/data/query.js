@@ -8,7 +8,7 @@ class QueryDao extends Conexion {
     queryAll() {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT id_query, id_data_table, name, sentence FROM QUERY LIMIT 10 OFFSET 10");
+            let stmt = this.dbConnection.prepare("SELECT id_query, id_data_table, name, sentence FROM QUERY");
             let res = stmt.exec();
             return res;
         } catch (error) {

@@ -23,6 +23,7 @@ class QueryDao extends Conexion {
             this.connect();
             let stmt = this.dbConnection.prepare("SELECT id_query, id_data_table, name, sentence FROM QUERY WHERE id_query = ? LIMIT 1");
             let res = stmt.exec([id]);
+            console.log(res[0]);
             return res[0];
         } catch (error) {
             return error;
@@ -47,9 +48,15 @@ class QueryDao extends Conexion {
 
     queryCreate(query) {
         try {
-            let columnName = 'ID_QUERY, ID_DATA_TABLE, SENTENCE';
-            let columnValues = '?, ?, ?'
-            let arrValues = [query.id_query, query.id_data_table, query.sentence]
+            let columnName = 'ID_QUERY, ID_DATA_TABLE';
+            let columnValues = '?, ?'
+            let arrValues = [query.id_query, query.id_data_table]
+
+            if (query.sentence) {
+                columnName += ', SENTENCE';
+                columnValues += ', ?'
+                arrValues.push(query.sentence)
+            }
 
             if (query.name) {
                 columnName += ', NAME';
@@ -58,7 +65,7 @@ class QueryDao extends Conexion {
             }
 
             let sqlQuery = `INSERT INTO QUERY (${columnName}) VALUES (${columnValues})`;
-
+            console.log(sqlQuery);
             this.connect();
             let stmt = this.dbConnection.prepare(sqlQuery);
             let res = stmt.exec(arrValues);

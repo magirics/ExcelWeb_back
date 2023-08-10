@@ -64,6 +64,7 @@ const createQueryField = (req = request, res = response) => {
     const { id_query, field_name, is_active } = req.body;
     const objReg = { id_query_field, id_query, field_name, is_active };
     const queryField = new QueryField();
+    console.log(objReg);
     const data = queryField.queryFieldCreate(objReg);
     const objResponse = {
       success: true,

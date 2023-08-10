@@ -52,7 +52,7 @@ CREATE TABLE query(
 	id_query varchar(60) not null UNIQUE,
 	id_data_table varchar(60) not null,
 	name varchar(80),
-	sentencia varchar(500) not null,
+	sentencia varchar(500),
 	date_create timestamp default current_timestamp,
 	user_create varchar(80) default 'default',
 	date_update timestamp default current_timestamp,

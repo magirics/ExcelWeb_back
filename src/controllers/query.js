@@ -69,7 +69,7 @@ const createQuery = (req = request, res = response) => {
       success: true,
       message: 'Data found',
       data: {
-        request: {...data, id: id_query},
+        request: { ...data, id: id_query },
       },
     }
     res.status(200).json(objResponse);
@@ -87,8 +87,8 @@ const createQuery = (req = request, res = response) => {
 const updateQuery = (req = request, res = response) => {
   try {
     const { id } = req.params;
-    const { id_data_table, name } = req.body;
-    const objReg = { id_data_table, name, id };
+    const { id_data_table, name, sentence } = req.body;
+    const objReg = { id_data_table, name, sentence, id };
     const query = new Query();
     const data = query.queryUpdate(objReg);
     const objResponse = {

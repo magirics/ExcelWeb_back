@@ -68,8 +68,9 @@ const createSheet = (req = request, res = response) => {
     if (id_query) { objReg.id_query = id_query; }
     if (is_plain) { objReg.is_plain = is_plain; }
     if (id_plain) { objReg.id_plain = id_plain; }
+    console.log(objReg);
     const sheet = new Sheet();
-    const data = sheet.customerCreate(objReg);
+    const data = sheet.sheetCreate(objReg);
     const objResponse = {
       success: true,
       message: 'Data found',
@@ -144,5 +145,4 @@ const deleteSheet = (req = request, res = response) => {
     res.status(500).json(objResponse);
   }
 }
-
 module.exports = { getSheets, getSheet, createSheet, updateSheet, deleteSheet }

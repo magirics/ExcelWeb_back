@@ -32,6 +32,19 @@ class SheetDao extends Conexion {
         }
     }
 
+    getSheetByProject(idProject) {
+        try {
+            this.connect();
+            let stmt = this.dbConnection.prepare("SELECT id_sheet, id_project, title, nivel, is_query, id_query, is_plain, id_plain FROM SHEET WHERE id_project = ?");
+            let res = stmt.exec([idProject]);
+            return res;
+        } catch (error) {
+            return error;
+        } finally {
+            this.disconnect();
+        }
+    }
+
     sheetDelete(id) {
         try {
             this.connect();
@@ -80,7 +93,8 @@ class SheetDao extends Conexion {
 
 
             let sqlQuery = `INSERT INTO SHEET (${columnName}) VALUES (${columnValues})`;
-
+            console.log(sqlQuery);
+            console.log(arrValues);
             this.connect();
             let stmt = this.dbConnection.prepare(sqlQuery);
             let res = stmt.exec(arrValues);

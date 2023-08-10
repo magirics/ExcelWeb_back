@@ -21,9 +21,9 @@ class QueryFieldDao extends Conexion {
     queryFieldGetOne(id) {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT id_query_field, id_query, field_name, is_active FROM QUERY_FIELD WHERE id_query_field = ? LIMIT 1");
+            let stmt = this.dbConnection.prepare("SELECT id_query_field, id_query, field_name, is_active FROM QUERY_FIELD WHERE id_query = ?");
             let res = stmt.exec([id]);
-            return res[0];
+            return res;
         } catch (error) {
             return error;
         } finally {
@@ -52,7 +52,8 @@ class QueryFieldDao extends Conexion {
             let arrValues = [queryField.id_query_field, queryField.id_query, queryField.field_name, queryField.is_active]
 
             let sqlQueryField = `INSERT INTO QUERY_FIELD (${columnName}) VALUES (${columnValues})`;
-
+            console.log(sqlQueryField);
+            console.log(arrValues);
             this.connect();
             let stmt = this.dbConnection.prepare(sqlQueryField);
             let res = stmt.exec(arrValues);

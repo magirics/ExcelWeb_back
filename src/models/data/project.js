@@ -4,11 +4,11 @@ class ProjectDao extends Conexion {
     constructor() {
         super()
     }
-    
+
     projectAll() {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT P.id_project, P.name, P.description, TO_VARCHAR(P.date_create, 'DD/MM/YYYY') AS DATE_CREATE, P.user_create, STRING_AGG(DT.table_name, ',') AS Tables FROM PROJECT P INNER JOIN SHEET S ON P.id_project = S.id_project INNER JOIN QUERY Q ON S.id_query = Q.id_query INNER JOIN DATA_TABLE DT ON Q.id_data_table = DT.id_data_table GROUP BY P.id_project, P.name, P.description, P.date_create, P.user_create");
+            let stmt = this.dbConnection.prepare("SELECT P.id_project, P.name, P.description, TO_VARCHAR(P.date_create, 'DD/MM/YYYY') AS DATE_CREATE, P.user_create, S.IS_QUERY, S.IS_PLAIN, STRING_AGG(DT.table_name, ',') AS Tables FROM PROJECT P INNER JOIN SHEET S ON P.id_project = S.id_project LEFT JOIN QUERY Q ON S.id_query = Q.id_query LEFT JOIN DATA_TABLE DT ON Q.id_data_table = DT.id_data_table GROUP BY P.id_project, P.name, P.description, P.date_create, P.user_create, S.IS_QUERY, S.IS_PLAIN;");
             let res = stmt.exec();
             return res;
         } catch (error) {

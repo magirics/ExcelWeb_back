@@ -76,3 +76,32 @@ CREATE TABLE plain(
 	full_text varchar(5000) not null,
 	primary key (id_plain)
 );
+
+CREATE TABLE receipt (
+	id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+	percent VARCHAR(10),
+	totalNetoPay DECIMAL(10, 2),
+	totalPay DECIMAL(10, 2),
+	emisionFecha DATE,
+	customerPhone VARCHAR(20),
+	descripcionPay VARCHAR(100),
+	payCompany VARCHAR(200),
+	payName VARCHAR(50),
+	streetCompanyName VARCHAR(200),
+	companyaRuc VARCHAR(20),
+	companyName VARCHAR(200),
+	streetName VARCHAR(200),
+	dataRuc VARCHAR(20),
+	invoiceId VARCHAR(20),
+	issueDate DATE,
+	payableAmount DECIMAL(10, 2),
+	customerName VARCHAR(200),
+	itemDescription VARCHAR(200),
+	date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	user_create VARCHAR(80) DEFAULT 'default',
+	date_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	user_update VARCHAR(80) DEFAULT 'default',
+	PRIMARY KEY (id)
+);
+
+

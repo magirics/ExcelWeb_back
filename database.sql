@@ -45,7 +45,7 @@ CREATE TABLE sheet(
 	user_create varchar(80) default 'default',
 	date_update timestamp default current_timestamp,
 	user_update varchar(80) default 'default',
-	primary key (id_project)
+	primary key (id_sheet)
 );
 
 CREATE TABLE query(

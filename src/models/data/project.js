@@ -8,7 +8,7 @@ class ProjectDao extends Conexion {
     projectAll() {
         try {
             this.connect();
-            let stmt = this.dbConnection.prepare("SELECT id_projecto, name, description FROM PROJECT LIMIT 10 OFFSET 10");
+            let stmt = this.dbConnection.prepare("SELECT P.id_project, P.name, P.description, TO_VARCHAR(P.date_create, 'DD/MM/YYYY') AS DATE_CREATE, P.user_create, S.IS_QUERY, S.IS_PLAIN, STRING_AGG(DT.table_name, ',') AS Tables FROM PROJECT P INNER JOIN SHEET S ON P.id_project = S.id_project LEFT JOIN QUERY Q ON S.id_query = Q.id_query LEFT JOIN DATA_TABLE DT ON Q.id_data_table = DT.id_data_table GROUP BY P.id_project, P.name, P.description, P.date_create, P.user_create, S.IS_QUERY, S.IS_PLAIN;");
             let res = stmt.exec();
             return res;
         } catch (error) {
@@ -47,14 +47,15 @@ class ProjectDao extends Conexion {
 
     projectCreate(project) {
         try {
-            let columnName = 'NAME, DESCRIPTION';
-            let columnValues = '?, ?'
-            let arrValues = [project.name, project.description]
+            let columnName = 'ID_PROJECT, NAME, DESCRIPTION';
+            let columnValues = '?, ?, ?'
+            let arrValues = [project.id_project, project.name, project.description]
             let sqlQuery = `INSERT INTO PROJECT (${columnName}) VALUES (${columnValues})`;
 
             this.connect();
             let stmt = this.dbConnection.prepare(sqlQuery);
             let res = stmt.exec(arrValues);
+            console.log(res);
             return res;
         } catch (error) {
             return error;

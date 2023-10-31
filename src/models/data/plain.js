@@ -47,9 +47,9 @@ class PlainDao extends Conexion {
 
     plainCreate(plain) {
         try {
-            let columnName = 'FULL_TEXT';
-            let columnValues = '?'
-            let arrValues = [plain.full_text]
+            let columnName = 'ID_PLAIN, FULL_TEXT, NAME';
+            let columnValues = '?, ?, ?'
+            let arrValues = [plain.id_plain, plain.full_text, 'FIXME please']
 
             let sqlQuery = `INSERT INTO PLAIN (${columnName}) VALUES (${columnValues})`;
 

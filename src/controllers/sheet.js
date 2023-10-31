@@ -60,14 +60,15 @@ const getSheet = (req = request, res = response) => {
 const createSheet = (req = request, res = response) => {
   try {
     const { id_project, title, nivel, is_query, id_query, is_plain, id_plain } = req.body;
-    const objReg = { id_project, title };
-    if (nivel) { objReg.nivel = nivel; }
-    if (is_query) { objReg.is_query = is_query; }
-    if (id_query) { objReg.id_query = id_query; }
-    if (is_plain) { objReg.is_plain = is_plain; }
-    if (id_plain) { objReg.id_plain = id_plain; }
+    const objReg = { id_sheet, id_project, title };
+    objReg.nivel = nivel;
+    objReg.is_query = is_query;
+    objReg.id_query = id_query;
+    objReg.is_plain = is_plain;
+    objReg.id_plain = id_plain;
     const sheet = new Sheet();
-    const data = sheet.customerCreate(objReg);
+    const data = sheet.sheetCreate(objReg);
+    console.log(data)
     const objResponse = {
       success: true,
       message: 'Data found',

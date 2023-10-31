@@ -52,27 +52,27 @@ class SheetDao extends Conexion {
             let columnValues = '?, ?'
             let arrValues = [sheet.id_project, sheet.title]
 
-            if (sheet.nivel) {
+            if (true) {
                 columnName += ', NIVEL';
                 columnValues += ', ?'
                 arrValues.push(sheet.nivel)
             }
-            if (sheet.is_query) {
+            if (true) {
                 columnName += ', IS_QUERY';
                 columnValues += ', ?'
                 arrValues.push(sheet.is_query)
             }
-            if (sheet.id_query) {
+            if (true) {
                 columnName += ', ID_QUERY';
                 columnValues += ', ?'
                 arrValues.push(sheet.id_query)
             }
-            if (sheet.is_plain) {
+            if (true) {
                 columnName += ', IS_PLAIN';
                 columnValues += ', ?'
                 arrValues.push(sheet.is_plain)
             }
-            if (sheet.id_plain) {
+            if (true) {
                 columnName += ', ID_PLAIN';
                 columnValues += ', ?'
                 arrValues.push(sheet.id_plain)
